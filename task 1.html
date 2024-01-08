@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image Gallery</title>
+    <link rel="stylesheet" href="task 1.css">
+    <!-- Include jQuery -->
+   
+</head>
+<body>
+    <style>
+        #gallery-container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        #thumbnail-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+        
+        #large-image-container {
+            margin-top: 20px;
+        }
+        
+        .large-image {
+            max-width: 100%;
+            height: auto;
+            display: none; /* Initially hide the large image */
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+    </style>
+
+    <div id="gallery-container">
+        <ul id="thumbnail-list">
+            <li><img src="download1.jpg" alt="Thumbnail 1" class="thumbnail" data-image="download1.jpg"></li>
+            <li><img src="download2.jpg" alt="Thumbnail 2" class="thumbnail" data-image="download2.jpg"></li>
+            <li><img src="download3.jpg" alt="Thumbnail 3" class="thumbnail" data-image="download3.jpg"></li>
+        </ul>
+
+        <div id="large-image-container">
+            <img src="download1.jpg" alt="Large Image" class="large-image" data-index="1">
+            <img src="download2.jpg" alt="Large Image" class="large-image" data-index="2">
+            <img src="download3.jpg" alt="Large Image" class="large-image" data-index="3">
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script >
+        $(document).ready(function() {
+            // Add click event listener to each thumbnail
+            $('.thumbnail').click(function() {
+                // Get the data-image attribute value
+                var largeImagePath = $(this).data('image');
+                var dataIndex = $(this).index() + 1;
+        
+                // Change the source of the corresponding large image with a fadeIn effect
+                $('.large-image[data-index="' + dataIndex + '"]').attr('src', largeImagePath).fadeIn();
+            });
+        });
+        
+        
+    </script>
+</body>
+</html>
+
